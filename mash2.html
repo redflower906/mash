@@ -1,0 +1,148 @@
+<html>
+<head>
+  <title>MASH</title>
+</head>
+<body>
+<h1 id='title'>Let's play MASH!</h1>
+<p id="res"></p>
+<p id='per'></p>
+<p id='veh'></p>
+<p id='sal'></p>
+<p id='dat'></p>
+<p id='loc'></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type='text/javascript'>
+
+function sumArray(array){
+  /* computes the sum of all the values of an array */
+  return array.reduce(function(a,b) {
+    return a + b });      // sum
+}
+function sum2DArray(array) {
+  /* Computes the sum of the value in an array of arrays */
+  var oneDArray = array.reduce(function(a,b) {
+    return a.concat(b) });
+  return sumArray(oneDArray);
+
+}
+
+function printSet(set, css_class) {
+  var str = '';
+  for (var i =0; i< set.length; i++){
+    str += '<span id="' + css_class + "_" + i +'">' + set[i] + "</span><br/>";
+  }
+  return str;
+}
+
+var ok = confirm("Shall we play M.A.S.H?")
+if (ok) {
+  var userNum = parseInt(prompt("Give me your favorite number!"));
+  var residence = ['monster mansion', 'awful apartment', ' shrieking shack', 'haunted house'];
+  var person = ["Frankenstein's Monster", 'Dracula', 'Freddie Krueger', 'Exorcist Girl'];
+  var car = ['a hearse', 'a wheelbarrow', 'the shoulders of an angry mob', 'the Scooby Doo van'];
+  var salary = ['human limbs', 'the freedom to live without the locals trying to catch you', '$300,000 (as a monster hunter)', 'scraps of refuse the villagers throw out'];
+  var locations = ['the Overlook Hotel', 'Transylvania', 'a graveyard', 'the afterlife']
+
+  document.getElementById("res").innerHTML =  '<h1>Residence</h1>' + printSet(residence, 'res');
+//  document.getElementById("res").innerHTML =  '<h1>Residence</h1>' + residence.join('<br/>');
+  document.getElementById('per').innerHTML = '<h1>Person</h1>' + printSet(person, 'per');
+  document.getElementById('veh').innerHTML = '<h1>Vehicle</h1>' + printSet(car, 'veh');
+  document.getElementById('sal').innerHTML = '<h1>Salary</h1>' + printSet(salary, 'sal');
+  document.getElementById('dat').innerHTML = '<h1>Location</h1>' + printSet(locations, 'loc');
+  var array = [[1,1,1,1], [1,1,1,1], [1,1,1,1], [1,1,1,1], [1,1,1,1]];
+  var count = 0;
+  var store = {};
+  while (sum2DArray(array) > 5) {
+
+    for (var i = 0; i < array.length; i++) {
+    var rowSum = sumArray(array[i]);
+      if (rowSum > 1) {
+      // ** calculate the sum of the array[i] using sumArray function
+      // ** if the sum is > 1 run the for loop to eliminate more values
+      for (var j = 0; j < array[i].length; j++) {
+        // ** only increase the count if the value of array[i][j]
+        //**is 1 (You only cross it out an element if it isn't already crossed out)
+        if (array[i][j] == 1) {
+          count++;
+        }
+        if (count == userNum) {
+          array[i][j] = 0;
+          count = 0;
+        }
+      }
+      }
+    }
+  }
+for (var i = 0; i < 4; i++) {
+
+
+  if (array[0][i] == 0) {
+    document.getElementById("res_" + i).innerHTML = residence[i].strike();
+  }
+
+    else {
+      store.resF = document.getElementById("res_" + i).innerHTML;
+    }
+
+  if (array[1][i] == 0) {
+    document.getElementById("per_" + i).innerHTML = person[i].strike();
+  }
+    else {
+      store.perF = document.getElementById("per_" + i).innerHTML;
+    }
+
+  if (array[2][i] == 0) {
+    document.getElementById("veh_" + i).innerHTML = car[i].strike();
+  }
+    else {
+      store.vehF = document.getElementById("veh_" + i).innerHTML;
+    }
+
+  if (array[3][i] == 0) {
+    document.getElementById("sal_" + i).innerHTML = salary[i].strike();
+  }
+    else {
+      store.salF = document.getElementById("sal_" + i).innerHTML;
+    }
+
+  if (array[4][i] == 0) {
+    document.getElementById("loc_" + i).innerHTML = locations[i].strike();
+
+  }
+    else {
+      store.locF = document.getElementById("loc_" + i).innerHTML;
+    }
+}
+var div = document.createElement('div');
+div.innerHTML = "<h1>And the verdict is...</h1>" + '<p> Congratulations! You are going to marry <b>' + store.perF + '</b> in <b>' + store.locF + '</b>!<br> You will then live in your very own <b>' + store.resF + '</b> and get around town riding <b>' + store.vehF + "</b>.<br> Plus, you'll be breaking the bank with <b>" + store.salF + '</b>! Lucky you! </p>';
+document.body.replaceChild(div, title);
+
+function boo(){
+  var end = confirm("Would you like to play again?");
+  if (end) {
+    window.location.reload(true);
+  }
+
+  else {
+    alrt();
+    //document.body.innerHTML = "<h1 id='title'>Let's play MASH!</h1>";
+
+  }
+}
+setTimeout(boo, 3000);
+
+function alrt() {
+    alert("Oh don't be a party pooper!");
+    window.location.reload(true);
+}
+
+
+}
+
+else {
+  document.write("You're no fun!");
+
+}
+</script>
+</body>
+</html>
