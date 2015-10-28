@@ -37,6 +37,9 @@ function printSet(set, css_class) {
 var ok = confirm("Shall we play M.A.S.H?")
 if (ok) {
   var userNum = parseInt(prompt("Give me your favorite number!"));
+  while (isNaN(userNum)) {
+    userNum = parseInt(prompt("I said a number, not letter or character. Come on!"));
+  }
   var residence = ['monster mansion', 'awful apartment', ' shrieking shack', 'haunted house'];
   var person = ["Frankenstein's Monster", 'Dracula', 'Freddie Krueger', 'Exorcist Girl'];
   var car = ['a hearse', 'a wheelbarrow', 'the shoulders of an angry mob', 'the Scooby Doo van'];
