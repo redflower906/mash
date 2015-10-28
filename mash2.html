@@ -40,6 +40,9 @@ if (ok) {
   while (isNaN(userNum)) {
     userNum = parseInt(prompt("I said a number, not letter or character. Come on!"));
   }
+  if (userNum >= 100000) {
+    var userNum = parseInt(prompt( 'Sorry, that number is too big. Try again!'));
+  }
   var residence = ['monster mansion', 'awful apartment', ' shrieking shack', 'haunted house'];
   var person = ["Frankenstein's Monster", 'Dracula', 'Freddie Krueger', 'Exorcist Girl'];
   var car = ['a hearse', 'a wheelbarrow', 'the shoulders of an angry mob', 'the Scooby Doo van'];
@@ -136,7 +139,7 @@ function boo(){
 
   }
 }
-setTimeout(boo, 3000);
+setTimeout(boo, 5000);
 
 
 }
