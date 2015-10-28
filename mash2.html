@@ -117,6 +117,10 @@ var div = document.createElement('div');
 div.innerHTML = "<h1>And the verdict is...</h1>" + '<p> Congratulations! You are going to marry <b>' + store.perF + '</b> in <b>' + store.locF + '</b>!<br> You will then live in your very own <b>' + store.resF + '</b> and get around town riding <b>' + store.vehF + "</b>.<br> Plus, you'll be breaking the bank with <b>" + store.salF + '</b>! Lucky you! </p>';
 document.body.replaceChild(div, title);
 
+function alrt() {
+    alert("Oh don't be a party pooper!");
+    window.location.reload(true);
+}
 function boo(){
   var end = confirm("Would you like to play again?");
   if (end) {
@@ -130,11 +134,6 @@ function boo(){
   }
 }
 setTimeout(boo, 3000);
-
-function alrt() {
-    alert("Oh don't be a party pooper!");
-    window.location.reload(true);
-}
 
 
 }
